@@ -156,10 +156,11 @@ namespace Unwritten
             _footstepSounds[0] = _audioSource.clip;
         }
 
+        // Since we have a kinematic rigidbody, we manually push objects when colliding into them
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             Rigidbody body = hit.collider.attachedRigidbody;
-            // Don't move the rigidbody if the character is on top of it
+            // Don't move the other object if the character is on top of it
             if (_collisionFlags == CollisionFlags.Below)
             {
                 return;
@@ -169,7 +170,8 @@ namespace Unwritten
             {
                 return;
             }
-            body.AddForceAtPosition(_characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
+
+            body.AddForceAtPosition(_characterController.velocity * 0.3f, hit.point, ForceMode.Impulse);
         }
     }
 }

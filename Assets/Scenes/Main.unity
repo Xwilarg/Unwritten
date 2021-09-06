@@ -1138,6 +1138,14 @@ PrefabInstance:
       propertyPath: m_SlopeLimit
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 5214195259662160565, guid: 7a18050db64f8544486288a4ca73023c, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214195259662160565, guid: 7a18050db64f8544486288a4ca73023c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5214195259665527253, guid: 7a18050db64f8544486288a4ca73023c, type: 3}
       propertyPath: m_Name
       value: FPSController
