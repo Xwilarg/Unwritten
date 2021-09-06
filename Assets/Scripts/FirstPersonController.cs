@@ -96,7 +96,7 @@ namespace Unwritten
 
             Vector3 desiredMove = transform.forward * input.y + transform.right * input.x;
 
-            // get a normal for the surface that is being touched to move along it
+            // Get a normal for the surface that is being touched to move along it
             Physics.SphereCast(transform.position, _characterController.radius, Vector3.down, out RaycastHit hitInfo,
                                _characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
@@ -148,12 +148,10 @@ namespace Unwritten
             {
                 return;
             }
-            // pick & play a random footstep sound from the array,
-            // excluding sound at index 0
+            // Get a random footstep sound between 1 and length then move it to index 0 to not play it next time
             int n = Random.Range(1, _footstepSounds.Length);
             _audioSource.clip = _footstepSounds[n];
             _audioSource.PlayOneShot(_audioSource.clip);
-            // move picked sound to index 0 so it's not picked next time
             _footstepSounds[n] = _footstepSounds[0];
             _footstepSounds[0] = _audioSource.clip;
         }
@@ -161,7 +159,7 @@ namespace Unwritten
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             Rigidbody body = hit.collider.attachedRigidbody;
-            //dont move the rigidbody if the character is on top of it
+            // Don't move the rigidbody if the character is on top of it
             if (_collisionFlags == CollisionFlags.Below)
             {
                 return;
