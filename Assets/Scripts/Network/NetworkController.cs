@@ -2,11 +2,22 @@
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using UnityEngine;
+using Unwritten.Player;
 
 namespace Unwritten.Network
 {
     public class NetworkController : NetworkBehaviour
     {
+        private void Start()
+        {
+            if (!IsLocalPlayer)
+            {
+                // If we are not local player, we can disable FPS controller and player camera
+                GetComponent<FirstPersonController>().enabled = false;
+                GetComponentInChildren<Camera>().enabled = false;
+            }
+        }
+
         private NetworkVariableVector3 _position = new(new NetworkVariableSettings
         {
             WritePermission = NetworkVariablePermission.ServerOnly,
