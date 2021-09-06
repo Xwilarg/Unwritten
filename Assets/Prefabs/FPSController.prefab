@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5214195259654276117}
   - component: {fileID: 5214195259662160565}
   - component: {fileID: 5214195259661035573}
+  - component: {fileID: 1674140020}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Untagged
@@ -48,30 +49,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae57fb02ac1e204f8283c5342f3af13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _walkSpeed: 2
+  _runSpeed: 4
+  _jumpSpeed: 3
+  _footstepSounds:
+  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
+  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
+  - {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
+  - {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
+  _landSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  _jumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  _runstepLenghten: 0.25
+  _stepInterval: 1
   _mouseLook:
     XSensitivity: 2
     YSensitivity: 2
     ClampVerticalRotation: 1
     MinimumX: -90
     MaximumX: 90
-  _landSound: {fileID: 0}
-  _walkSpeed: 0
-  _runSpeed: 0
-  _gravityMutliplicator: 0
+  _gravityMutliplicator: 1
   _fovKick:
     FOVIncrease: 3
     TimeToIncrease: 1
     TimeToDecrease: 1
     IncreaseCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  _stickToGroundForce: 0
-  _runstepLenghten: 0
-  _stepInterval: 0
-  _footstepSounds: []
+  _stickToGroundForce: 1
 --- !u!143 &5214195259654276117
 CharacterController:
   m_ObjectHideFlags: 0
@@ -202,6 +227,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1674140020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214195259665527253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 4250651540520672882
+  PrefabHashGenerator: FPSController
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1 &5214195259665527255
 GameObject:
   m_ObjectHideFlags: 0
