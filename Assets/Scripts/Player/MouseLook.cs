@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Unwritten
+namespace Unwritten.Player
 {
     [Serializable]
     public class MouseLook

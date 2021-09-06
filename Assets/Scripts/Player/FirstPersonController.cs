@@ -1,7 +1,9 @@
 using UnityEngine;
+using Unwritten.Network;
 
-namespace Unwritten
+namespace Unwritten.Player
 {
+    [RequireComponent(typeof(NetworkController), typeof(CharacterController), typeof(AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
         [Header("Speed")]
@@ -35,8 +37,11 @@ namespace Unwritten
         private CollisionFlags _collisionFlags;
         private bool _isWalking;
 
+        private NetworkController _controller;
+
         private void Start()
         {
+            _controller = GetComponent<NetworkController>();
             _characterController = GetComponent<CharacterController>();
             _audioSource = GetComponent<AudioSource>();
             _mouseLook.Init(transform, Camera.main.transform);
@@ -120,9 +125,10 @@ namespace Unwritten
             }
             else
             {
-                _moveDir += Physics.gravity * _gravityMutliplicator * Time.fixedDeltaTime;
+                _moveDir += _gravityMutliplicator * Time.fixedDeltaTime * Physics.gravity;
             }
             _collisionFlags = _characterController.Move(_moveDir * Time.fixedDeltaTime);
+            _controller.Move(transform.position);
 
             ProgressStepCycle(speed, input);
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5214195259662160565}
   - component: {fileID: 5214195259661035573}
   - component: {fileID: 1674140020}
+  - component: {fileID: 1353664516}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Untagged
@@ -244,6 +245,18 @@ MonoBehaviour:
   PrefabHashGenerator: FPSController
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
+--- !u!114 &1353664516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214195259665527253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f492904f1c3da4e811727a7d5e463c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5214195259665527255
 GameObject:
   m_ObjectHideFlags: 0
