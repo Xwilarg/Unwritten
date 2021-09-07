@@ -164,7 +164,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38670
+  m_Name: pb_Mesh25836
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -818,6 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f7ce741f41cfc42acbb7d30d5651aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transport: {fileID: 2106286909}
 --- !u!4 &1475144086
 Transform:
   m_ObjectHideFlags: 0
@@ -1172,8 +1173,8 @@ MonoBehaviour:
   MaxConnections: 100
   MaxSentMessageQueueSize: 128
   ConnectAddress: 127.0.0.1
-  ConnectPort: 7777
-  ServerListenPort: 7777
+  ConnectPort: 7676
+  ServerListenPort: 7676
   ServerWebsocketListenPort: 8887
   SupportWebsocket: 0
   Channels: []
@@ -1195,7 +1196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DontDestroy: 1
   RunInBackground: 1
-  LogLevel: 1
+  LogLevel: 0
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 2106286909}

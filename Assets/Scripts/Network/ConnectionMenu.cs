@@ -1,11 +1,25 @@
 ﻿using MLAPI;
+using MLAPI.Transports.UNET;
 using UnityEngine;
-using Unwritten.Player;
 
 namespace Unwritten.Network
 {
     public class ConnectionMenu : MonoBehaviour
     {
+        [SerializeField]
+        private UNetTransport _transport;
+
+        private string _ip = "";
+
+        private void Start()
+        {
+            if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null)
+            {
+                Debug.Log("Headless mode detected, starting as server mode");
+                NetworkManager.Singleton.StartServer();
+            }
+        }
+
         void OnGUI()
         {
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));
@@ -21,10 +35,15 @@ namespace Unwritten.Network
             GUILayout.EndArea();
         }
 
-        static void StartButtons()
+        void StartButtons()
         {
             if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
-            if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
+            _ip = GUILayout.TextField(_ip, 15);
+            if (GUILayout.Button("Client"))
+            {
+                _transport.ConnectAddress = _ip;
+                NetworkManager.Singleton.StartClient();
+            }
             if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
         }
 
@@ -33,8 +52,6 @@ namespace Unwritten.Network
             var mode = NetworkManager.Singleton.IsHost ?
                 "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
-            GUILayout.Label("Transport: " +
-                NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
             GUILayout.Label("Mode: " + mode);
         }
     }

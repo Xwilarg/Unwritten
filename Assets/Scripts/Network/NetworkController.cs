@@ -15,6 +15,7 @@ namespace Unwritten.Network
                 // If we are not local player, we can disable FPS controller and player camera
                 GetComponent<FirstPersonController>().enabled = false;
                 GetComponentInChildren<Camera>().enabled = false;
+                GetComponentInChildren<AudioListener>().enabled = false;
             }
         }
 
@@ -28,7 +29,6 @@ namespace Unwritten.Network
         {
             if (NetworkManager.Singleton.IsServer)
             {
-                transform.position = pos;
                 _position.Value = pos;
             }
             else
