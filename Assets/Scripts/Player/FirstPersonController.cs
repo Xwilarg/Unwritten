@@ -1,10 +1,10 @@
+using MLAPI;
 using UnityEngine;
-using Unwritten.Network;
 
 namespace Unwritten.Player
 {
-    [RequireComponent(typeof(NetworkController), typeof(CharacterController), typeof(AudioSource))]
-    public class FirstPersonController : MonoBehaviour
+    [RequireComponent(typeof(CharacterController), typeof(AudioSource))]
+    public class FirstPersonController : NetworkBehaviour
     {
         [Header("Speed")]
         [SerializeField] private float _walkSpeed;
@@ -37,11 +37,18 @@ namespace Unwritten.Player
         private CollisionFlags _collisionFlags;
         private bool _isWalking;
 
-        private NetworkController _controller;
-
         private void Start()
         {
-            _controller = GetComponent<NetworkController>();
+
+            if (!IsLocalPlayer)
+            {
+                // If we are not local player, we can disable FPS controller and player camera
+                GetComponentInChildren<Camera>().enabled = false;
+                GetComponentInChildren<AudioListener>().enabled = false;
+                this.enabled = false;
+                return;
+            }
+
             _characterController = GetComponent<CharacterController>();
             _audioSource = GetComponent<AudioSource>();
             _mouseLook.Init(transform, Camera.main.transform);
@@ -128,7 +135,6 @@ namespace Unwritten.Player
                 _moveDir += _gravityMutliplicator * Time.fixedDeltaTime * Physics.gravity;
             }
             _collisionFlags = _characterController.Move(_moveDir * Time.fixedDeltaTime);
-            _controller.Move(transform.position);
 
             ProgressStepCycle(speed, input);
 
